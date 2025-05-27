@@ -10,7 +10,7 @@ namespace PersonalFinanceManagement
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hey, welcome");
+            Console.WriteLine("Welcome to Code Refactoring Lab Edition!");
 
             while (true)
             {
@@ -42,6 +42,7 @@ namespace PersonalFinanceManagement
             Console.WriteLine("Done!");
         }
 
+        // Refactored Log_in()
         private static void Log_in()
         {
             Console.Write("Email? ");
@@ -49,52 +50,71 @@ namespace PersonalFinanceManagement
             Console.Write("Pass? ");
             string p = Console.ReadLine();
 
-            activeUser = Authenticate(e, p);
-            if (activeUser != null)
+            if (AuthenticateAndSetUser(e, p))
             {
                 Console.WriteLine($"Hi, {activeUser.Name}");
+                SelectOrCreateWallet();
+                RunUserMenu();
+            }
+            else
+            {
+                Console.WriteLine("Wrong...");
+            }
+        }
 
-                if (activeUser.GetWallets().Count == 0)
+        private static bool AuthenticateAndSetUser(string email, string password)
+        {
+            activeUser = Authenticate(email, password);
+            return activeUser != null;
+        }
+
+        private static void SelectOrCreateWallet()
+        {
+            var w = activeUser.GetWallets();
+            if (w.Count == 0)
+            {
+                Console.WriteLine("No wallet? Make one!");
+                CW();
+            }
+            else
+            {
+                for (int i = 0; i < w.Count; i++) Console.WriteLine($"{i + 1}. {w[i].Name}");
+                Console.WriteLine($"{w.Count + 1}. New one?");
+                Console.Write("Pick: ");
+
+                int y;
+                while (!int.TryParse(Console.ReadLine(), out y) || y < 1 || y > w.Count + 1) Console.WriteLine("Try again.");
+
+                if (y <= w.Count) activeUser.SelectActiveWallet(w[y - 1]);
+                else CW();
+            }
+        }
+
+        private static void RunUserMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("\n1. $+");
+                Console.WriteLine("2. $-");
+                Console.WriteLine("3. Info");
+                Console.WriteLine("4. Stats");
+                Console.WriteLine("5. X Wallet");
+                Console.WriteLine("6. Bye");
+                Console.Write("Pick: ");
+
+                string opt = Console.ReadLine();
+
+                switch (opt)
                 {
-                    Console.WriteLine("No wallet? Make one!");
-                    CW();
-                }
-                else
-                {
-                    var w = activeUser.GetWallets();
-                    for (int i = 0; i < w.Count; i++) Console.WriteLine($"{i + 1}. {w[i].Name}");
-                    Console.WriteLine($"{w.Count + 1}. New one?");
-                    Console.Write("Pick: ");
-
-                    int y;
-                    while (!int.TryParse(Console.ReadLine(), out y) || y < 1 || y > w.Count + 1) Console.WriteLine("Try again.");
-
-                    if (y <= w.Count) activeUser.SelectActiveWallet(w[y - 1]);
-                    else CW();
-                }
-
-                while (true)
-                {
-                    Console.WriteLine("\n1. $+");
-                    Console.WriteLine("2. $-");
-                    Console.WriteLine("3. Info");
-                    Console.WriteLine("4. Stats");
-                    Console.WriteLine("5. X Wallet");
-                    Console.WriteLine("6. Bye");
-                    Console.Write("Pick: ");
-
-                    string opt = Console.ReadLine();
-
-                    if (opt == "1") DoIncome();
-                    else if (opt == "2") DoExpense();
-                    else if (opt == "3") Seewallet();
-                    else if (opt == "4") Stats();
-                    else if (opt == "5") DW();
-                    else if (opt == "6") return;
-                    else Console.WriteLine("Hmm?");
+                    case "1": DoIncome(); break;
+                    case "2": DoExpense(); break;
+                    case "3": Seewallet(); break;
+                    case "4": Stats(); break;
+                    case "5": DW(); break;
+                    case "6": return;
+                    default: Console.WriteLine("Hmm?"); break;
                 }
             }
-            else Console.WriteLine("Wrong...");
         }
 
         private static void CW()
