@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace PersonalFinanceManagement
 {
-    class Program
+    public class Program
     {
         private static List<User> users = new List<User>();
         private static User activeUser;
@@ -280,5 +280,14 @@ namespace PersonalFinanceManagement
         {
             return users.Find(x => x.Email == email && x.Authenticate(password));
         }
-    }
+
+
+
+        //lab2
+        public static User TryAuthenticate(string email, string password)
+        {
+            return Storage.Authenticate(email, password);
+        }
+
+    } 
 }

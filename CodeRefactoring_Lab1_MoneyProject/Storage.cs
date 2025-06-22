@@ -8,6 +8,7 @@ using System.Text.Json;
 
 namespace PersonalFinanceManagement
 {
+
     public static class Storage
     {
         private const string UserDataFile = "userData.json"; // JSON file to store user data
@@ -97,5 +98,13 @@ namespace PersonalFinanceManagement
         }
 
         // Other methods to handle more complex storage requirements can be added here
+
+        // ADD THIS:
+        public static List<User> users = new List<User>();
+
+        public static User Authenticate(string email, string password)
+        {
+            return users.Find(user => user.Email == email && user.Authenticate(password));
+        }
     }
 }

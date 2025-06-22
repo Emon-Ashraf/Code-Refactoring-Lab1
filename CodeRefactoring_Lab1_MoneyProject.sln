@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35506.116 d17.12
+VisualStudioVersion = 17.12.35506.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeRefactoring_Lab1_MoneyProject", "CodeRefactoring_Lab1_MoneyProject\CodeRefactoring_Lab1_MoneyProject.csproj", "{85812434-8A87-4631-B0AA-4BFB9D0AE6DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinanceManagement_for_lab2.Tests", "PersonalFinanceManagement_for_lab2.Tests\PersonalFinanceManagement_for_lab2.Tests.csproj", "{4344C63B-510F-4545-A172-9F08AF92B1A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{85812434-8A87-4631-B0AA-4BFB9D0AE6DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{85812434-8A87-4631-B0AA-4BFB9D0AE6DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{85812434-8A87-4631-B0AA-4BFB9D0AE6DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4344C63B-510F-4545-A172-9F08AF92B1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4344C63B-510F-4545-A172-9F08AF92B1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4344C63B-510F-4545-A172-9F08AF92B1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4344C63B-510F-4545-A172-9F08AF92B1A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
